@@ -25,13 +25,24 @@
         android:id="@+id/etCardNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="70dp"
         android:ems="10"
         android:hint="Enter Card Number"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
@@ -43,7 +54,17 @@
         app:layout_constraintEnd_toEndOf="@+id/etCardNum"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/etCardNum"
-        app:layout_constraintTop_toBottomOf="@+id/etCardNum"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <CheckBox
+        android:id="@+id/chbSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Spinner/EditText"
+        app:layout_constraintBottom_toTopOf="@+id/etCardNum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

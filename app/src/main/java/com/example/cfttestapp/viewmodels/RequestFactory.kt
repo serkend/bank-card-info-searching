@@ -3,10 +3,13 @@ package com.example.cfttestapp.viewmodels
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.cfttestapp.db.RequestDatabase
 
-class MainFactory(val application: Application, val cardNum: String) :
+class RequestFactory(val application: Application, val database: RequestDatabase) :
     ViewModelProvider.AndroidViewModelFactory(application) {
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MainViewModel(application, cardNum) as T
+        return RequestViewModel(application, database) as T
     }
+
 }
