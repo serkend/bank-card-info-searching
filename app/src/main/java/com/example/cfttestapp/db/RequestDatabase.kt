@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.cfttestapp.db.dao.Dao
 import com.example.cfttestapp.db.model.RequestString
 
-@Database(entities = [RequestString::class], version = 2)
+@Database(entities = [RequestString::class], version = 3)
 abstract class RequestDatabase : RoomDatabase() {
     abstract fun getDao(): Dao
 

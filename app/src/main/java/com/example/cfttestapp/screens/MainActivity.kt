@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.cfttestapp.Constants
@@ -19,6 +20,7 @@ import java.io.File
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     var viewModel: RequestViewModel? = null
+    var currListOfRequests = emptyList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +43,17 @@ class MainActivity : AppCompatActivity() {
             ) {
                 cardNum = binding.etCardNum.text.toString()
             }
+            if (cardNum.isNotEmpty()) {
+                val intent = Intent(this@MainActivity, ResultActivity::class.java)
+                intent.putExtra(Constants.ET_CARD_NUMBER_KEY, cardNum)
 
-            val intent = Intent(this@MainActivity, ResultActivity::class.java)
-            intent.putExtra(Constants.ET_CARD_NUMBER_KEY, cardNum)
-
-            viewModel?.insertRequest(RequestString(0, cardNum))
-            startActivity(intent)
+                if (!currListOfRequests.contains(cardNum)) {
+                    viewModel?.insertRequest(RequestString(0, cardNum))
+                }
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Enter card number please", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.chbSpinner.setOnCheckedChangeListener { compoundButton, b ->
@@ -59,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         viewModel?.allRequests?.observe(this) { it ->
             var requestList = it
             var strings = emptyList<String>()
@@ -67,6 +73,7 @@ class MainActivity : AppCompatActivity() {
             requestList.let { list ->
                 strings = list.map { it.request }
             }
+            currListOfRequests = strings
             // Log.d("MyLog: ", "Requests : $strings")
 //            var strings1 = listOf<String>("123456", "3486547", "35680580")
             var arrayAdapter: ArrayAdapter<String> =

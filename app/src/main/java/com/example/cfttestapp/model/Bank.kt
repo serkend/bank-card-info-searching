@@ -5,4 +5,10 @@ data class Bank(
     val name: String,
     val phone: String,
     val url: String
-)
+
+
+) {
+    override fun toString(): String {
+        return "Bank(city='$city', name='$name')"
+    }
+}
